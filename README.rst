@@ -22,8 +22,8 @@ Quick links
       <img src="https://img.shields.io/crates/v/senpy-ffi.svg"
            alt="Crate" />
     </a>
-    <a href="https://docs.rs/senpy">
-      <img src="https://docs.rs/senpy/badge.svg"
+    <a href="https://docs.rs/senpy-ffi">
+      <img src="https://docs.rs/senpy-ffi/badge.svg"
            alt="Documentation" />
     </a>
     <a href="https://github.com/senpy-club/senpy-ffi/actions/workflows/check.yaml">
