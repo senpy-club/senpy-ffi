@@ -7,16 +7,16 @@ extension: str = {"darwin": ".dylib", "win32": ".dll"}.get(sys.platform, ".so")
 ffi = FFI()
 ffi.cdef(
   """
-  typedef struct { char *language; char *image; } random_t;
+  struct Random { char *language; char *image; };
   
   char **language(const char *);
   
   char **languages(void);
   
-  random_t *random_new(void);
-  void random_populate(random_t *);
-  void random_free(random_t *);
-  char *random_get(const random_t *, const char *);
+  struct Random *random_new(void);
+  void random_populate(struct Random *);
+  void random_free(struct Random *);
+  char *random_get(const struct Random *, const char *);
   
   int status(void);
   """
