@@ -3,6 +3,8 @@ senpy-ffi
 
 FFI bindings for `senpy-rs <https://github.com/senpy-club/senpy-rs>`_
 
+FFI bindings are great, but safe FFI bindings are even better; in the coming days, I hope to have the time to implement a safe wrapper around these FFI bindings for as many languages as doable so that using The Senpy Club API in any language is just as easy and safe as using :code:`senpy-rs` in Rust.
+
 Notice
 ------
 
