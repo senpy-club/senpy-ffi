@@ -1,0 +1,24 @@
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package]
+name = "senpy-ffi"
+version = "0.1.0"
+authors = ["Fuwn <contact@fuwn.me>"]
+edition = "2021"
+description = "FFI bindings for senpy-rs"
+readme = "README.rst"
+homepage = "https://github.com/senpy-club/senpy-ffi"
+repository = "https://github.com/senpy-club/senpy-ffi"
+license = "GPL-3.0-only"
+keywords = ["rust", "anime", "senpy", "senpy-club"]
+categories = ["web-programming", "api-bindings"]
+
+[lib]
+crate-type = ["dylib"]
+
+[dependencies]
+# Senpy
+senpy = "0.1.2"
+
+# FFI
+libc = "0.2.119"
