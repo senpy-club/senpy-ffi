@@ -1,0 +1,56 @@
+# ------------
+# | Wrappers |
+# ------------
+[tasks.fmt]
+command = "cargo"
+args = ["fmt"]
+private = true
+
+[tasks.check]
+command = "cargo"
+args = ["check"]
+private = true
+
+[tasks.clippy]
+command = "cargo"
+args = ["clippy"]
+private = true
+
+# -------------
+# | Executors |
+# -------------
+[tasks.checkf]
+dependencies = ["fmt", "check"]
+
+[tasks.checkfc]
+dependencies = ["fmt", "check", "clippy"]
+
+[tasks.docs]
+workspace = false
+toolchain = "nightly"
+command = "cargo"
+args = ["doc", "--open", "--document-private-items", "--no-deps"]
+
+[tasks.ffi_python]
+workspace = false
+dependencies = ["checkfc", "build"]
+command = "py"
+args = ["examples/ffi.py"]
+
+[tasks.ffi_lua]
+workspace = false
+dependencies = ["checkfc", "build"]
+command = "luvit"
+args = ["examples/ffi.lua"]
+
+[tasks.ffi_perl]
+workspace = false
+dependencies = ["checkfc", "build"]
+command = "perl"
+args = ["examples/ffi.pl"]
+
+[tasks.ffi_php]
+workspace = false
+dependencies = ["checkfc", "build"]
+command = "php"
+args = ["examples/ffi.php"]
