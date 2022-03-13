@@ -16,6 +16,8 @@
 // Copyright (C) 2022-2022 Fuwn <contact@fuwn.me>
 // SPDX-License-Identifier: GPL-3.0-only
 
+//! FFI bindings for [`senpy-rs`](https://github.com/senpy-club/senpy-rs)
+
 #![feature(trivial_bounds)]
 #![deny(
   warnings,
