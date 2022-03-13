@@ -18,16 +18,16 @@ Quick links
       <img src="https://img.shields.io/github/license/senpy-club/senpy-ffi"
            alt="License" />
     </a>
-    <a href="https://crates.io/crates/senpy">
-      <img src="https://img.shields.io/crates/v/senpy.svg"
+    <a href="https://crates.io/crates/senpy-ffi">
+      <img src="https://img.shields.io/crates/v/senpy-ffi.svg"
            alt="Crate" />
     </a>
     <a href="https://docs.rs/senpy">
       <img src="https://docs.rs/senpy/badge.svg"
            alt="Documentation" />
     </a>
-    <a href="https://github.com/senpy-club/api-worker/actions/workflows/check.yaml">
-      <img src="https://github.com/senpy-club/api-worker/actions/workflows/check.yaml/badge.svg?branch=main"
+    <a href="https://github.com/senpy-club/senpy-ffi/actions/workflows/check.yaml">
+      <img src="https://github.com/senpy-club/senpy-ffi/actions/workflows/check.yaml/badge.svg?branch=main"
            alt="Build Status" />
     </a>
   </p>
