@@ -54,3 +54,9 @@ workspace = false
 dependencies = ["checkfc", "build"]
 command = "php"
 args = ["examples/ffi.php"]
+
+[tasks.ffi_julia]
+workspace = false
+dependencies = ["checkfc", "build"]
+command = "julia"
+args = ["examples/ffi.jl"]
