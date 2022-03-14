@@ -43,6 +43,7 @@ Usage Examples
   $ luvit examples/ffi.lua
   $ perl examples/ffi.pl
   $ php examples/ffi.php
+  $ julia examples/ffi.jl
 
 Examples
 --------
