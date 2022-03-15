@@ -37,9 +37,26 @@ use std::ffi::{CStr, CString};
 
 use libc::c_char;
 
-/// Part of the wrapper for `senpy::random`
+/// The base URL to The Senpy Club API
 ///
-/// Stores `senpy::random`'s data
+/// FFI binding to `senpy::SENPY_CLUB_API_BASE_URL`
+#[no_mangle]
+pub static SENPY_CLUB_API_BASE_URL: &str = senpy::SENPY_CLUB_API_BASE_URL;
+/// The current API version of The Senpy Club API
+///
+/// FFI binding to `senpy::SENPY_CLUB_API_CURRENT_VERSION`
+#[no_mangle]
+pub static SENPY_CLUB_API_CURRENT_VERSION: u32 =
+  senpy::SENPY_CLUB_API_CURRENT_VERSION;
+/// The API URL to The Senpy Club API
+///
+/// FFI binding to `senpy::SENPY_CLUB_API_URL`
+#[no_mangle]
+pub static SENPY_CLUB_API_URL: &str = senpy::SENPY_CLUB_API_URL;
+
+/// The response of the <https://api.senpy.club/v2/random> route
+///
+/// Part of the FFI binding to `senpy::random`
 #[repr(C)]
 #[derive(Default)]
 pub struct Random {
@@ -47,15 +64,15 @@ pub struct Random {
   image:    String,
 }
 impl Random {
-  /// Part of the wrapper for `senpy::random`
-  ///
   /// Initializes a new `Random`
+  ///
+  /// Part of the FFI binding to `senpy::random`
   #[must_use]
   pub fn new() -> Self { Self::default() }
 
-  /// Part of the wrapper for `senpy::random`
-  ///
   /// Populates a `Random` from a `senpy::random` call
+  ///
+  /// Part of the FFI binding to `senpy::random`
   pub fn populate(&mut self) {
     if let Ok(image) = senpy::random() {
       self.language = image.language;
@@ -66,9 +83,9 @@ impl Random {
     }
   }
 
-  /// Part of the wrapper for `senpy::random`
-  ///
   /// Frees a `Random`
+  ///
+  /// Part of the FFI binding to `senpy::random`
   #[must_use]
   pub fn get(&self, key: &str) -> String {
     match key {
@@ -80,11 +97,13 @@ impl Random {
 }
 
 /// Returns an array where the first element is the size of the array and the
-/// remaining elements are the images. Returns `-1` if the request failed for
-/// any reason.
+/// remaining elements are the images.
+///
+/// If the first element (size) is `-1`; the
+/// request failed for any reason.
 ///
 /// # Safety
-/// This is an unsafe FFI binding to `senpy::language`.
+/// This is an *unsafe* FFI binding to `senpy::language`.
 ///
 /// # Panics
 /// if a `String` cannot be converted into a `CString`
@@ -105,11 +124,13 @@ pub unsafe extern "C" fn language(language: *const c_char) -> *mut *mut c_char {
   }
 }
 
-/// `senpy::languages` wrapper
-///
 /// Returns an array where the first element is the size of the array and the
-/// remaining elements are the languages. Returns `-1` if the request failed for
+/// remaining elements are the languages.
+///
+/// If the first element (size) is `-1`; the request failed for
 /// any reason.
+///
+/// FFI binding to `senpy::languages`
 ///
 /// # Panics
 /// if a `String` cannot be converted into a `CString`
@@ -131,31 +152,27 @@ pub extern "C" fn languages() -> *mut *mut c_char {
   }
 }
 
-/// Part of the wrapper for `senpy::random`
-///
 /// Initializes a new `Random`
+///
+/// Part of the FFI binding to `senpy::random`
 #[no_mangle]
 pub extern "C" fn random_new() -> *mut Random {
   Box::into_raw(Box::new(Random::new()))
 }
 
-/// Part of the wrapper for `senpy::random`
-///
 /// Populates a `Random` from a `senpy::random` call
 ///
 /// # Safety
-/// This part of an unsafe FFI binding to `senpy::random`.
+/// This is part of an *unsafe* FFI binding to `senpy::random`.
 #[no_mangle]
 pub unsafe extern "C" fn random_populate(random: *mut Random) {
   (&mut *random).populate();
 }
 
-/// Part of the wrapper for `senpy::random`
-///
 /// Gets a member from a `Random`, valid members are `language` and `image`.
 ///
 /// # Safety
-/// This part of an unsafe FFI binding to `senpy::random`.
+/// This is part of an *unsafe* FFI binding to `senpy::random`.
 ///
 /// # Panics
 /// if the `key` cannot be wrapped as a safe `CStr`
@@ -169,12 +186,10 @@ pub unsafe extern "C" fn random_get(
     .into_raw()
 }
 
-/// Part of the wrapper for `senpy::random`
-///
 /// Frees a `Random`
 ///
 /// # Safety
-/// This part of an unsafe FFI binding to `senpy::random`.
+/// This is part of an *unsafe* FFI binding to `senpy::random`.
 #[no_mangle]
 pub unsafe extern "C" fn random_free(random: *mut Random) {
   if random.is_null() {
@@ -184,10 +199,10 @@ pub unsafe extern "C" fn random_free(random: *mut Random) {
   Box::from_raw(random);
 }
 
-/// `senpy::status` wrapper
-///
 /// Returns `1` if up, returns `0` if down, and returns `-1` if the request
 /// failed for any reason.
+///
+/// FFI binding to `senpy::status`
 #[no_mangle]
 pub extern "C" fn status() -> i32 {
   match senpy::status() {
