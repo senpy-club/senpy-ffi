@@ -7,6 +7,10 @@ extension: str = {"darwin": ".dylib", "win32": ".dll"}.get(sys.platform, ".so")
 ffi = FFI()
 ffi.cdef(
   """
+  extern const char *SENPY_CLUB_API_BASE_URL;
+  extern int SENPY_CLUB_API_CURRENT_VERSION;
+  extern const char *SENPY_CLUB_API_URL;
+  
   struct Random { char *language; char *image; };
   
   char **language(const char *);
@@ -84,3 +88,7 @@ for i in range(int(ffi.string(images[0]))):
 images_list.pop(0)
 
 print("images:", images_list)
+
+print("api base url:", ffi.string(C.SENPY_CLUB_API_BASE_URL).decode("utf-8"))
+print("api current version:", int(C.SENPY_CLUB_API_CURRENT_VERSION))
+print("api url:", ffi.string(C.SENPY_CLUB_API_URL).decode("utf-8"))
