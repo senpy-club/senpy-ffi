@@ -18,7 +18,6 @@
 
 //! FFI bindings for [`senpy-rs`](https://github.com/senpy-club/senpy-rs)
 
-#![feature(trivial_bounds)]
 #![deny(
   warnings,
   nonstandard_style,
@@ -196,7 +195,7 @@ pub unsafe extern "C" fn random_free(random: *mut Random) {
     return;
   }
 
-  Box::from_raw(random);
+  drop(Box::from_raw(random));
 }
 
 /// Returns `1` if up, returns `0` if down, and returns `-1` if the request
